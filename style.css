@@ -1,0 +1,253 @@
+ /* Anderer Dozent als sonst >> etwas anderes Vorgehen */
+/* Sachen, die er immer gern vorher einstellt und korrigiert */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+section {
+    padding: 7rem 0;
+}
+
+
+/* Accent Colors */
+
+.hero {
+    --clr-accent: #faa700
+}
+
+.shoe-red {                                 /* Variablen bei den Objekten einstellen :) */
+    --clr-inner: #faa700;
+    --clr-outer: #e48d00;
+    --clr-accent: #a1173c;
+}
+
+.shoe-white {                                 /* Variablen bei den Objekten einstellen :) */
+    --clr-inner: #fce4b3;
+    --clr-outer: #eac886;
+    --clr-accent: #2f4858;
+}
+
+.shoe-blue {                                 /* Variablen bei den Objekten einstellen :) */
+    --clr-inner: #6dd5ed;
+    --clr-outer: #2193b0;
+    --clr-accent: #008951;
+}
+
+
+/* WEITER */
+.container {
+    width: 85%;
+    max-width: 65em;
+    margin: 0 auto;
+}
+
+.split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+
+}
+
+.split > * {
+    flex-basis: 30%;                        /* damit (und siehe eins oben sind die Schuhe nebeneinander und wenn zu eng untereinander */
+    min-width: 15em;
+} 
+
+
+.spacing > * + * {                          /* Klasse, damit die DIREKTEN KINDER der Klasse überall genug Platz haben */
+    margin-top: var(--spacer, 2rem);
+}
+
+.btn {
+    display: inline-block;                 /* damit es nicht überschneidet usw. */
+    text-decoration: none;
+    color: var(--text-color, #fff);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    padding: .5em 1.25em;
+    background: var(--clr-accent, blue);   /* alternative Farben festlegen!*/
+    border-radius: .25rem;  
+    transition: 
+        transform 250ms ease-in-out,    /* damit ist :hover sanfter!!! */
+        opactiy 250ms linear;
+}
+
+.btn:hover,
+.btn:focus {                            /* Fokus ist z.B. wenn mit der Tastatur ausgewählt */
+    transform: scale(1.1);
+    opacity: .9;                        /* dadurch ändert sich die Farbe ein bisschen!! :) */         
+}
+
+/* Header */
+
+.primary-title {
+    font-size: 4rem;
+    font-size: clamp(3rem, 5vw + 1rem, 4.5rem);     /* damit ändert der Text seine Größe zwischen einem Max und Min, Mittlerer Wert ist der bevorzugte; oben drüber normale Größe angeben, falls der Browser clamp nicht unterstützt! */
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(2.5rem, calc(5vw + 1rem), 4rem);
+    line-height: 1;
+    color: #17353d;
+    margin-bottom: 5rem;
+}
+
+.hero {
+    color: white;
+    text-align: center;
+    padding: 15em 0;
+    background: #222;
+}
+
+@supports (background-blend-mode: multiply){
+    .hero {
+        background: 
+            url(../img/shoe-3.png),
+            radial-gradient( #444, #111);
+        background-blend-mode: multiply;
+        background-attachment: fixed;               /* dadurch bleibt das Bild, auch wenn man runterscrollt :) */
+        background-repeat: no-repeat;
+        background-position: top center;
+        
+    }
+}
+
+/* Featured Products */
+
+.featured {
+    background: #eee;
+}
+
+.featured-item {
+    display: block;
+    position: relative;
+    transform: scale(.85);
+    transition: transform 250ms ease-in-out;
+    text-decoration: none;
+    color: #333;
+    text-align: right;
+    line-height: 1.2;
+}
+
+.featured-item img {                    /* Bilder in Proportion vergrößern: height: auto; max-width: 100%; */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;                /* weil das Bild in der Mitte etwas kleiner war */
+}
+
+.featured-item:hover,
+.featured-item:focus {
+    transform: scale(1);                        
+}
+
+.featured-item::after {                     /* ::after = Pseudo-Element, was nach dem letzten Element der Klasse kommt; hier der Kreis hinter Schuhen */
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    padding: 75% 75% 0 0;                 /* so macht man Sachen quadratisch/ gleiche Höhe und Breite */
+    background: #2193b0;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.featured-details {
+    opacity: 0;
+    transform: translateY(-5rem);
+    transition: opacity 250ms linear;
+}
+
+.featured-item:hover .featured-details,  
+.featured-item:focus .featured-details {
+    opacity: 1;
+    text-shadow: 0 0 2em rgba(#111, .25);
+}
+
+span {
+    display: block;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+/* Our Products */
+.product {
+    background: radial-gradient(var(--clr-inner), var(--clr-outer));
+    padding: 3em;
+    border-radius: 1em;
+    margin-bottom: 5em;
+    text-align: center;
+}
+
+.product-title {
+    font-size: clamp(3rem, calc(6vw + 1rem), 5rem);
+    font-weight: bolder;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0, 0, .2em, rgba(0, 0, 0, .9) ;
+}
+
+.product-description {
+    font-size: 1.2rem;
+}
+
+.product-image {
+    transform: translateY(-5rem);
+}
+
+
+/* Media Queries */
+
+@media(min-width: 45em){
+    .product,
+    .product-title {
+        text-align: left;
+    }
+    
+    .product-image {
+        float: right;
+        width: 65%;
+        shape-outside: url(../img/shoe-1.png);
+        shape-margin: 1em;
+        margin: 0 -5em 0 0;
+    }
+
+    .shoe-white .product-image {
+        float: left;
+        shape-outside: url(../img/shoe-2.png);
+        shape-margin: 2em;
+        margin: 0 0 0 -5em;
+    }
+
+    .shoe-white .product-title,
+    .shoe-white .product-description,
+    .shoe-white .btn {
+        text-align: right;
+    }
+}
