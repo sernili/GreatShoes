@@ -25,14 +25,17 @@ p {
 }
 
 section {
-    padding: 7rem 0;
+    padding: 5rem, 0;
 }
 
 
 /* Accent Colors */
+:root {
+    --clr-title: #17353d;
+}
 
 .hero {
-    --clr-accent: #faa700
+    --clr-accent: #faa700;
 }
 
 .shoe-red {                                 /* Variablen bei den Objekten einstellen :) */
@@ -58,7 +61,7 @@ section {
 .container {
     width: 85%;
     max-width: 65em;
-    margin: 0 auto;
+    margin: 3rem auto;
 }
 
 .split {
@@ -100,47 +103,98 @@ section {
     opacity: .9;                        /* dadurch ändert sich die Farbe ein bisschen!! :) */         
 }
 
-/* Header */
-
-.primary-title {
-    font-size: 4rem;
-    font-size: clamp(3rem, 5vw + 1rem, 4.5rem);     /* damit ändert der Text seine Größe zwischen einem Max und Min, Mittlerer Wert ist der bevorzugte; oben drüber normale Größe angeben, falls der Browser clamp nicht unterstützt! */
-    line-height: 1;
-    text-transform: uppercase;
-}
-
 .section-title {
     text-align: center;
     font-size: clamp(2.5rem, calc(5vw + 1rem), 4rem);
     line-height: 1;
-    color: #17353d;
+    color: ;
     margin-bottom: 5rem;
 }
 
+
+/* Header */
 .hero {
     color: white;
     text-align: center;
-    padding: 15em 0;
-    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5em 0;
+    background: 
+        url(../img/shoe-3.png),
+        radial-gradient(var(--clr-title), #111);
+    background-position: center;
+    background-attachment: fixed;
+
+    /* background: url(../img/shoe-3.png);
+    background-repeat: no-repeat;
+    background-position: top center; */
 }
 
-@supports (background-blend-mode: multiply){
+/* @supports (background-blend-mode: multiply){
     .hero {
         background: 
             url(../img/shoe-3.png),
             radial-gradient( #444, #111);
         background-blend-mode: multiply;
         background-attachment: fixed;               /* dadurch bleibt das Bild, auch wenn man runterscrollt :) */
-        background-repeat: no-repeat;
+        /* background-repeat: no-repeat;
         background-position: top center;
         
     }
+} */
+
+.title-shoe {
+    display: inline-block;
+    width: 35%;
 }
+
+.primary-title {
+    font-size: 4rem;
+    font-size: clamp(3rem, 20vw + 1rem, 9rem);     /* damit ändert der Text seine Größe zwischen einem Max und Min, Mittlerer Wert ist der bevorzugte; oben drüber normale Größe angeben, falls der Browser clamp nicht unterstützt! */
+    line-height: 1.2;
+    text-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    animation: slideInFromTop .5s ease-in-out;
+}
+
+.title-paragraph {
+    font-size: 3rem;
+    text-transform: uppercase;
+    animation: slideInFromTop .5s ease-in-out;
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.arrow {
+    font-size: 5rem;
+    font-weight: lighter;
+    display: block;
+    color: #fff;
+    opacity: .7;
+    transition: all 1s ease;
+
+}
+
+.arrow:hover {
+    opacity: 1;
+}
+
 
 /* Featured Products */
 
 .featured {
     background: #eee;
+    padding: 3rem;
 }
 
 .featured-item {
@@ -149,7 +203,7 @@ section {
     transform: scale(.85);
     transition: transform 250ms ease-in-out;
     text-decoration: none;
-    color: #333;
+    color: black;
     text-align: right;
     line-height: 1.2;
 }
@@ -177,7 +231,7 @@ section {
 }
 
 .featured-details {
-    opacity: 0;
+    opacity: .5;
     transform: translateY(-5rem);
     transition: opacity 250ms linear;
 }
@@ -199,8 +253,14 @@ span {
     background: radial-gradient(var(--clr-inner), var(--clr-outer));
     padding: 3em;
     border-radius: 1em;
-    margin-bottom: 5em;
+    margin-bottom: 2em;
     text-align: center;
+    transition: translateY 250ms ease-in-out;
+}
+
+.product:hover .product-image {
+    transform: translateY(-5rem);
+    display: inline-block;
 }
 
 .product-title {
@@ -218,7 +278,25 @@ span {
 }
 
 .product-image {
-    transform: translateY(-5rem);
+    transform: translateY(-3rem);
+}
+
+/* Footer */
+footer {
+    margin-bottom: 2rem;
+    color: #222;
+    text-align: center;
+    padding: 1rem;
+}
+
+footer a {
+    color: var(--light);
+    text-decoration: none;
+}
+
+footer a:hover {
+    transform: scale(1.1);
+    display: inline-block;      /* Falls transform nicht funktioniert display: inline-block einstellen! */
 }
 
 
@@ -234,20 +312,20 @@ span {
         float: right;
         width: 65%;
         shape-outside: url(../img/shoe-1.png);
-        shape-margin: 1em;
+        shape-margin: 3em;
         margin: 0 -5em 0 0;
     }
 
     .shoe-white .product-image {
         float: left;
         shape-outside: url(../img/shoe-2.png);
-        shape-margin: 2em;
+        shape-margin: 3em;
         margin: 0 0 0 -5em;
     }
 
-    .shoe-white .product-title,
-    .shoe-white .product-description,
-    .shoe-white .btn {
+    .shoe-white,
+    .shoe-white .product-title {
         text-align: right;
+     
     }
 }
