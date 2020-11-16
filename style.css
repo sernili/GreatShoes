@@ -8,7 +8,6 @@
 
 body {
     margin: 0;
-    width: 100%;
     font-family: 'Noto Sans JP', sans-serif;
     line-height: 1.6;
 }
@@ -147,13 +146,13 @@ section {
 } */
 
 .title-shoe {
-    display: inline-block;
+    display: none;
     width: 35%;
 }
 
 .primary-title {
     font-size: 4rem;
-    font-size: clamp(3rem, 20vw + 1rem, 9rem);     /* damit ändert der Text seine Größe zwischen einem Max und Min, Mittlerer Wert ist der bevorzugte; oben drüber normale Größe angeben, falls der Browser clamp nicht unterstützt! */
+    font-size: clamp(4rem, 5vw + 1rem, 6rem);     /* damit ändert der Text seine Größe zwischen einem Max und Min, Mittlerer Wert ist der bevorzugte; oben drüber normale Größe angeben, falls der Browser clamp nicht unterstützt! */
     line-height: 1.2;
     text-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.8);
     text-transform: uppercase;
@@ -161,7 +160,8 @@ section {
 }
 
 .title-paragraph {
-    font-size: 3rem;
+    font-size: 2rem;
+    font-size: clamp(2rem, 5vw + 1rem, 3rem); 
     text-transform: uppercase;
     animation: slideInFromTop .5s ease-in-out;
 }
